@@ -36,6 +36,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
@@ -78,15 +79,12 @@ fun PostCardHistory(post: Post, navigateToArticle: (String) -> Unit) {
             Text(post.title, style = MaterialTheme.typography.titleMedium)
             Row(Modifier.padding(top = 4.dp)) {
                 CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onSurfaceVariant) {
-                    val textStyle = MaterialTheme.typography.bodyMedium
-                    Text(
-                        text = post.metadata.author.name,
-                        style = textStyle
-                    )
-                    Text(
-                        text = " - ${post.metadata.readTimeMinutes} min read",
-                        style = textStyle
-                    )
+                    IconButton(onClick = { openDialog = true }) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = stringResource(R.string.cd_show_fewer)
+                        )
+                    }
                 }
             }
         }
